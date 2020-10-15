@@ -64,7 +64,7 @@ Then our API will send us a **response**, it will look like this:
 Now we know that the product has been added to the database and our database has given it an ID: ```5f87f0f754fb750b274d6214```.
 We will use this ID in the following examples.
 
-### 1. Updating Objects ###
+### 2. Updating Objects ###
 So we created an object successfully but what if we want to change its 'name' from 'Sample Product' to 'Sample Product Updated' and 
 update the 'offer_price_value' from 450 to 400. Like we did in previous example we will first set the updated parameters
 ```python
@@ -99,4 +99,10 @@ Then our API will send us a **response**, it will look like this:
 }
 ```
 
-### 1. Reading Objects ###
+### 3. Reading Objects ###
+To read the objects we will be sending a GET request to the API. The URL for GET request looks like this:
+```
+http://127.0.0.1:5000/read/<column>/<value>
+```
+In this API there are a number of ways using ehich a user can read the objects in the database, we will be discussing all of them one by one.
+* **View a Specific Product**
