@@ -9,3 +9,14 @@ Now we have to create a **Docker image**. To do so open terminal and go to the n
 ```
 docker build -t flaskapp
 ```
+Kindly note that instead of 'flaskapp' you can give any name tag of your choice.
+
+### Running the container ###
+Once the docker image is ready it is time to start and run an image instance. A running instance of an image is called as container.
+To do so enter the following command in the terminal:
+```
+docker run -ti -p 5000:5000 flaskapp
+```
+Kindly note that ``` -ti ``` is for interactive terminal mode and ```-p 5000:5000``` will map the port 5000 of the docker container with port 5000 of the host system.
+
+Now our API sould be running on the localhost and listening on port 5000. 
