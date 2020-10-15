@@ -105,7 +105,7 @@ To read the objects we will be sending a GET request to the API. The URL for GET
 http://127.0.0.1:5000/read/<column>/<value>
 ```
 In this API there are a number of ways using ehich a user can read the objects in the database, we will be discussing all of them one by one.
-#### a. View a Specific Product: ####
+#### a. View a Specific Product ####
 To do this we have to search for the specific product using its ID.
 ```python
 import requests
@@ -135,11 +135,11 @@ Kindly note that in place of <column> and <value> we have to write '_id' and '5f
 ```
 As you can see this is the product which we first created and then updated.
     
-#### b. Search for Products: ####
+#### b. Search for Products ####
 User can also search in the database with other values as well, like if a user wants to see all products with "classification_l2" containing value as "women's knitwear".
 To do so we will write "classification_l2" and "women's knitwear" in place of <column> and <value> respectively.
     
-```
+```python
 import requests
 
 api_result = requests.get(url="http://127.0.0.1:5000/read/classification_l2/women's knitwear")
@@ -158,7 +158,7 @@ In the response we will receive a ```List``` of ```JSON``` objects which will lo
     ....
 ```
 
-#### c. View all Products: ####
+#### c. View all Products ####
 If a user want to see all the products stored in the database, the user has to write 'none' and 'none' in place of <column> and <value>. 'none' tells the API that no filters should be applied and show all the data. It should look like this:
     
 ```python
@@ -178,4 +178,23 @@ In the response we will receive a ```List``` of ```JSON``` objects which will lo
     {'_id': '5f8076080f260a0dd4540586', 'name': 'Half-Zip Merino Bib', 'brand_name': '', 'regular_price_value': 99.0, 'offer_price_value': 99.0, 'currency': 'GBP', 'classification_l1': 'baby & child', 'classification_l2': 'feeding & healthcare', 'classification_l3': 'bibs', 'classification_l4': '', 'image_url': 'https://lp.arket.com/app006prod?set=source[01_0808761_001_2],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[201908231525]&call=url[file:/product/style]'},
     ....
     ....
+```
+### 4. Deleting an Object ###
+Inorder to delete a product the user must provide ID of that project. The user needs to send a DELETE request to the API. The request should look like this:
+
+```python
+import requests
+
+api_result = requests.delete(url='http://127.0.0.1:5000/delete/5f87f0f754fb750b274d6214')
+api_response = api_result.json()
+print(api_response)
+```
+
+Then our API will send us a **response**, it will look like this:
+
+```python
+{
+    'message': 'Product with ID: 5f87f0f754fb750b274d6214 is successfully deleted.', 
+    'status': 200
+}
 ```
