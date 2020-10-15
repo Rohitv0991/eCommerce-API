@@ -45,7 +45,7 @@ params = {
     "image_url":"https://domain.com/in/image/sample/12345?"
 }
 ```
-Now we will send a post request with the **JSON** parameters to our API
+Now we will send a POST request with the **JSON** parameters to our API
 ```python
 
 import requests
@@ -63,3 +63,40 @@ Then our API will send us a **response**, it will look like this:
 ```
 Now we know that the product has been added to the database and our database has given it an ID: ```5f87f0f754fb750b274d6214```.
 We will use this ID in the following examples.
+
+### 1. Updating Objects ###
+So we created an object successfully but what if we want to change its 'name' from 'Sample Product' to 'Sample Product Updated' and 
+update the 'offer_price_value' from 450 to 400. Like we did in previous example we will first set the updated parameters
+```python
+# updated parameters
+
+params = {
+    "name":"Sample Product Updated",
+    "brand_name":"Sample Brand",
+    "regular_price_value":500,
+    "offer_price_value":400,
+    "currency":"GBP",
+    "classification_l1":"Class 1",
+    "classification_l2":"Class 2",
+    "classification_l3":"",
+    "classification_l4":"",
+    "image_url":"https://domain.com/in/image/sample/12345?"
+}
+```
+Now we have to send a PUT request to our API to update the product with ID: ```5f87f0f754fb750b274d6214```.
+```python
+import requests
+
+api_result = requests.put(url='http://127.0.0.1:5000/update/5f87f0f754fb750b274d6214', json=params)
+api_response = api_result.json()
+print(api_response)
+```
+Then our API will send us a **response**, it will look like this:
+```python
+{
+    'message': 'Product with ID: 5f87f0f754fb750b274d6214 is successfully updated.', 
+    'status': 200
+}
+```
+
+### 1. Reading Objects ###
