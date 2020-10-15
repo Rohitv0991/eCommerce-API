@@ -45,7 +45,7 @@ params = {
     "image_url":"https://domain.com/in/image/sample/12345?"
 }
 ```
-Now we will send a POST request with the **JSON** parameters to our API
+Now we will send a **POST** request with the **JSON** parameters to our API
 ```python
 
 import requests
@@ -65,8 +65,8 @@ Now we know that the product has been added to the database and our database has
 We will use this ID in the following examples.
 
 ### 2. Updating Objects ###
-So we created an object successfully but what if we want to change its 'name' from 'Sample Product' to 'Sample Product Updated' and 
-update the 'offer_price_value' from 450 to 400. Like we did in previous example we will first set the updated parameters
+So we created an object successfully but what if we want to change its ```name``` from **'Sample Product'** to **'Sample Product Updated'** and 
+update the ```offer_price_value``` from **450** to **400**. Like we did in previous example we will first set the updated parameters
 ```python
 # updated parameters
 
@@ -83,7 +83,7 @@ params = {
     "image_url":"https://domain.com/in/image/sample/12345?"
 }
 ```
-Now we have to send a PUT request to our API to update the product with ID: ```5f87f0f754fb750b274d6214```.
+Now we have to send a **PUT** request to our API to update the product with ID: ```5f87f0f754fb750b274d6214```.
 ```python
 import requests
 
@@ -100,7 +100,7 @@ Then our API will send us a **response**, it will look like this:
 ```
 
 ### 3. Reading Objects ###
-To read the objects we will be sending a GET request to the API. The URL for GET request looks like this:
+To read the objects we will be sending a **GET** request to the API. The URL for GET request looks like this:
 ```
 http://127.0.0.1:5000/read/<column>/<value>
 ```
@@ -180,7 +180,7 @@ In the response we will receive a ```List``` of ```JSON``` objects which will lo
     ....
 ```
 ### 4. Deleting an Object ###
-Inorder to delete a product the user must provide ID of that project. The user needs to send a DELETE request to the API. The request should look like this:
+Inorder to delete a product the user must provide ID of that project. The user needs to send a **DELETE** request to the API. The request should look like this:
 
 ```python
 import requests
