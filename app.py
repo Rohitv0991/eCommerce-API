@@ -5,14 +5,17 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
+# connecting with MongoDB
 cluster = pymongo.MongoClient(
     "mongodb+srv://user:1234@productsdata.oimyn.mongodb.net/eCommerce?retryWrites=true&w=majority")
 db = cluster["eCommere"]
 collection = db["ProductsData"]
 
-
+# base route for our API
 @app.route('/')
 def index():
+    # it just returns a welcome message so that user can check 
+    # whether everything is working fine or not
     message = {
         'status': 200,
         'message': 'Welcome to eCommerce API v0.0.9'
@@ -21,33 +24,42 @@ def index():
     resp.status_code = 200
     return resp
 
-
+# read end point takes two path parameters
 @app.route('/read/<column>/<value>', methods=['GET'])
 def showProduct(column, value):
     try:
+        # if user is searching with "_id" then we convert value from string to ObjectId
         if column == "_id":
             products = list(collection.find({column: ObjectId(value)}))
-
+            
+        # if user has not provided any filter then we show all data in database
         elif column == "none":
             products = list(collection.find())
-
+        
+        # we check if the value has int data as string if so then we change it to int
         elif value.isdigit():
             value = int(value)
             products = list(collection.find({column: value}))
-
+            
+        # this allows the user to search with fields which contain no value
+        # like "classification_l3" = ""
         elif value == "none":
             value = ""
             products = list(collection.find({column: value}))
-
+        
         else:
             products = list(collection.find({column: value}))
 
+        # after getting the "products" we change "_id" from ObjectId to string
+        # so that the user can use it use it easily
         for product in products:
             product["_id"] = str(product["_id"])
+            
+        # converting into JSON and returning the response
         resp = dumps(products)
-
         return resp
-
+    
+    # handles any exception that may occur due to Bad user inputs
     except Exception as ex:
         message = {
             'status': 400,
