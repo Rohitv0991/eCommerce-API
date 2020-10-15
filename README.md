@@ -27,7 +27,7 @@ This API allows the user to interact with the data of ***5000 eCommerce products
 This examples are of running the service locally (localhost), using port 5000.
 
 ### 1. Creating new objects ###
-Inorder to create a new object we have to first set input parameters. Kindly make sure that your request includes all the keys.
+Inorder to create a new object we have to first ```import requests``` module. Then set input parameters. Kindly make sure that your request includes all the keys.
 ```python
 
 # input JSON parameters
@@ -45,4 +45,21 @@ params = {
     "image_url":"https://domain.com/in/image/sample/12345?"
 }
 ```
+Now we will send a post request with the **JSON** parameters to our API
+```python
 
+import requests
+
+api_result = requests.post(url='http://127.0.0.1:5000/create', json=params)
+api_response = api_result.json()
+print(api_response)
+```
+Then our API will send us a **response**, it will look like this:
+```json
+{
+    'message': 'Product added successfully with ID: 5f87f0f754fb750b274d6214', 
+    'status': 201
+}
+```
+Now we know that the product has been added to the database and our database has given it an ID: ```5f87f0f754fb750b274d6214```.
+We will use this ID in the following examples.
