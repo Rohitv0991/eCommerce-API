@@ -55,7 +55,7 @@ api_response = api_result.json()
 print(api_response)
 ```
 Then our API will send us a **response**, it will look like this:
-```json
+```python
 {
     'message': 'Product added successfully with ID: 5f87f0f754fb750b274d6214', 
     'status': 201
