@@ -7,9 +7,9 @@ This is a **RESTful API** written in **Python** using the **Flask** web framewor
 Firstly you must have **Docker** installed on your computer. You can download Docker from [here](https://www.docker.com/101-tutorialclone). Then clone this repository in a new folder.
 Now we have to create a **Docker image**. To do so open terminal and go to the newly created folder where you have cloned this repository and run the following command:
 ```
-docker build -t flaskapp
+docker build -t flaskapp .
 ```
-Kindly note that instead of 'flaskapp' you can give any name tag of your choice.
+Kindly note that instead of 'flaskapp' you can give any name tag of your choice and also do not miss the ```.``` at the end of the above command or you will see an error.
 
 ### Running the container ###
 Once the docker image is ready it is time to start and run an image instance. A running instance of an image is called as container.
