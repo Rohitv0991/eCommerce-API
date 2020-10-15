@@ -105,7 +105,7 @@ To read the objects we will be sending a GET request to the API. The URL for GET
 http://127.0.0.1:5000/read/<column>/<value>
 ```
 In this API there are a number of ways using ehich a user can read the objects in the database, we will be discussing all of them one by one.
-####a. View a Specific Product:####
+#### a. View a Specific Product: ####
 To do this we have to search for the specific product using its ID.
 ```python
 import requests
@@ -115,6 +115,7 @@ api_response = api_result.json()
 print(api_response)
 ```
 Kindly note that in place of <column> and <value> we have to write '_id' and '5f87f0f754fb750b274d6214' respectively. Then API will search in database for product with given ID and will return a ```List``` of ```JSON``` objects but it will only contain a single object in this case as every ID is unique, response will look like this:
+    
 ```python
 [
     {
@@ -134,13 +135,47 @@ Kindly note that in place of <column> and <value> we have to write '_id' and '5f
 ```
 As you can see this is the product which we first created and then updated.
     
-#### b. Search for Products:####
+#### b. Search for Products: ####
 User can also search in the database with other values as well, like if a user wants to see all products with "classification_l2" containing value as "women's knitwear".
+To do so we will write "classification_l2" and "women's knitwear" in place of <column> and <value> respectively.
+    
+```
+import requests
+
+api_result = requests.get(url="http://127.0.0.1:5000/read/classification_l2/women's knitwear")
+api_response = api_result.json()
+print(api_response)
+```
+
+In the response we will receive a ```List``` of ```JSON``` objects which will look lke this:
+
 ```python
 [
     {'_id': '5f8076080f260a0dd453f370', 'name': 'John Lewis & Partners Relaxed V-Neck Cashmere Sweater', 'brand_name': 'john lewis & partners', 'regular_price_value': 99.0, 'offer_price_value': 99.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's knitwear", 'classification_l3': '', 'classification_l4': '', 'image_url': 'https://johnlewis.scene7.com/is/image/JohnLewis/004193458?'}, 
     {'_id': '5f8076080f260a0dd453f399', 'name': 'Reiss Turner Colour Block Jumper, Blue', 'brand_name': 'reiss', 'regular_price_value': 115.0, 'offer_price_value': 80.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's knitwear", 'classification_l3': '', 'classification_l4': '', 'image_url': 'https://johnlewis.scene7.com/is/image/JohnLewis/004235447?'},
     {'_id': '5f8076080f260a0dd453f39a', 'name': 'Warehouse Stitch Diamante Embellished Jumper, Black', 'brand_name': 'warehouse', 'regular_price_value': 46.0, 'offer_price_value': 20.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's knitwear", 'classification_l3': '', 'classification_l4': '', 'image_url': 'https://johnlewis.scene7.com/is/image/JohnLewis/004795694?'},
+    ....
+    ....
+```
+
+#### c. View all Products: ####
+If a user want to see all the products stored in the database, the user has to write 'none' and 'none' in place of <column> and <value>. 'none' tells the API that no filters should be applied and show all the data. It should look like this:
+    
+```python
+import requests
+
+api_result = requests.get(url='http://127.0.0.1:5000/read/none/none')
+api_response = api_result.json()
+print(api_response)
+```
+
+In the response we will receive a ```List``` of ```JSON``` objects which will look like this:
+
+```python
+[
+    {'_id': '5f8076080f260a0dd4540584', 'name': 'French Terry Sweatshirt', 'brand_name': '', 'regular_price_value': 69.0, 'offer_price_value': 35.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's shirts & tops", 'classification_l3': '', 'classification_l4': '', 'image_url': 'https://lp.arket.com/app006prod?set=source[01_0765893_001_4],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[201908202327]&call=url[file:/product/style]'}, 
+    {'_id': '5f8076080f260a0dd4540585', 'name': 'Cotton Cashmere Beanie', 'brand_name': '', 'regular_price_value': 18.0, 'offer_price_value': 9.0, 'currency': 'GBP', 'classification_l1': 'men', 'classification_l2': "men's accessories", 'classification_l3': "men's hats, gloves & scarves", 'classification_l4': '', 'image_url': 'https://lp.arket.com/app006prod?set=source[02_0668567_003_1],type[PRODUCT],device[hdpi],quality[80],ImageVersion[201908231104]&call=url[file:/product/style]'}, 
+    {'_id': '5f8076080f260a0dd4540586', 'name': 'Half-Zip Merino Bib', 'brand_name': '', 'regular_price_value': 99.0, 'offer_price_value': 99.0, 'currency': 'GBP', 'classification_l1': 'baby & child', 'classification_l2': 'feeding & healthcare', 'classification_l3': 'bibs', 'classification_l4': '', 'image_url': 'https://lp.arket.com/app006prod?set=source[01_0808761_001_2],type[ECOMLOOK],device[hdpi],quality[80],ImageVersion[201908231525]&call=url[file:/product/style]'},
     ....
     ....
 ```
