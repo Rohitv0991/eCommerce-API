@@ -1,10 +1,10 @@
 # eCommerce-API
-It is a **RESTful API** that allows the user to do basic **CRUD** operations on the data that is the user can Create new objects, Read the data, Update or Delete the objects in the database hosted on **MongoDB Atlas**.
+This is a **RESTful API** written in **Python** using the **Flask** web framework, which allows the user to do basic **CRUD** operations on the data that is the user can Create new objects, Read the data, Update or Delete the objects in the database hosted on **MongoDB Atlas**.
 
 ## Get Started ##
 
 ### Installation ###
-First you must have **Docker** installed on your computer. You can download Docker from [here](https://www.docker.com/101-tutorialclone). Then clone this repository in a new folder.
+Firstly you must have **Docker** installed on your computer. You can download Docker from [here](https://www.docker.com/101-tutorialclone). Then clone this repository in a new folder.
 Now we have to create a **Docker image**. To do so open terminal and go to the newly created folder where you have cloned this repository and run the following command:
 ```
 docker build -t flaskapp
@@ -19,4 +19,12 @@ docker run -ti -p 5000:5000 flaskapp
 ```
 Kindly note that ``` -ti ``` is for interactive terminal mode and ```-p 5000:5000``` will map the port 5000 of the docker container with port 5000 of the host system.
 
-Now our API sould be running on the localhost and listening on port 5000. 
+Now our API sould be running on the localhost and listening on port 5000.
+
+## Usage ##
+
+This API allows the user to interact with the data of ***5000 eCommerce products*** stored on the **MongoDB Atlas**. The user can perform **CRUD** operations on the remote database. We will be discussing usage of each operation one by one.
+This examples are of running the service locally (localhost), using port 5000.
+
+### 1. Creating new objects ###
+ggnfgnfnfgnfg
