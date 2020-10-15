@@ -105,7 +105,7 @@ To read the objects we will be sending a GET request to the API. The URL for GET
 http://127.0.0.1:5000/read/<column>/<value>
 ```
 In this API there are a number of ways using ehich a user can read the objects in the database, we will be discussing all of them one by one.
-* **View a Specific Product:**
+* ####View a Specific Product:####
 To do this we have to search for the specific product using its ID.
 ```python
 import requests
@@ -134,13 +134,14 @@ Kindly note that in place of <column> and <value> we have to write '_id' and '5f
 ```
 As you can see this is the product which we first created and then updated.
     
-* ** Search for Products:**
+* ####Search for Products:####
 User can also search in the database with other values as well, like if a user wants to see all products with "classification_l2" containing value as "women's knitwear".
 ```python
 [
     {'_id': '5f8076080f260a0dd453f370', 'name': 'John Lewis & Partners Relaxed V-Neck Cashmere Sweater', 'brand_name': 'john lewis & partners', 'regular_price_value': 99.0, 'offer_price_value': 99.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's knitwear", 'classification_l3': '', 'classification_l4': '', 'image_url': 'https://johnlewis.scene7.com/is/image/JohnLewis/004193458?'}, 
     {'_id': '5f8076080f260a0dd453f399', 'name': 'Reiss Turner Colour Block Jumper, Blue', 'brand_name': 'reiss', 'regular_price_value': 115.0, 'offer_price_value': 80.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's knitwear", 'classification_l3': '', 'classification_l4': '', 'image_url': 'https://johnlewis.scene7.com/is/image/JohnLewis/004235447?'},
-    ....
+    {'_id': '5f8076080f260a0dd453f39a', 'name': 'Warehouse Stitch Diamante Embellished Jumper, Black', 'brand_name': 'warehouse', 'regular_price_value': 46.0, 'offer_price_value': 20.0, 'currency': 'GBP', 'classification_l1': 'women', 'classification_l2': "women's knitwear", 'classification_l3': '', 
+'classification_l4': '', 'image_url': 'https://johnlewis.scene7.com/is/image/JohnLewis/004795694?'},
     ....
     ....
 ```
