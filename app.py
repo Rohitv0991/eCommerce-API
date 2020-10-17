@@ -69,10 +69,11 @@ def showProduct(column, value):
         resp.status_code = 400
         return resp
 
-
+# create endpoint which can be used to add product
 @app.route('/create', methods=['POST'])
 def addProduct():
     try:
+        # product data will be passed as a JSON parameter
         product = {
             'name': request.json['name'],
             'brand_name': request.json['brand_name'],
@@ -85,22 +86,24 @@ def addProduct():
             'classification_l4': request.json['classification_l4'],
             'image_url': request.json['image_url']
         }
-
-        if (product['name'] and product['regular_price_value'] and product['offer_price_value'] and product[
-            'currency'] and
-                product['classification_l1'] and product['classification_l2'] and product['image_url']):
-
+        # user must provide these values others can be empty string
+        if (product['name'] and product['regular_price_value'] and product['offer_price_value'] and product['currency'] and
+            product['classification_l1'] and product['classification_l2'] and product['image_url']):
+            
+            # this will insert the product and store the database response
             dbResponse = collection.insert_one(product)
-
+            # message to return the user
             message = {
                 'status': 201,
                 'message': 'Product added successfully with ID: ' + str(dbResponse.inserted_id)
             }
+            # change the "message" from dictionary to JSON
             resp = jsonify(message)
             resp.status_code = 201
             return resp
 
         else:
+            # if the user didn't provide any of the required fields
             message = {
                 'status': 400,
                 'message': 'Could not add product. Please check your input and try again.'
@@ -108,7 +111,8 @@ def addProduct():
             resp = jsonify(message)
             resp.status_code = 400
             return resp
-
+        
+    # handles any exception that may occur due to Bad user inputs
     except Exception as ex:
         message = {
             'status': 400,
@@ -118,12 +122,13 @@ def addProduct():
         resp.status_code = 400
         return resp
 
-
+# the update endpoint will take one path parameter product "_id"
 @app.route('/update/<id>', methods=['PUT'])
 def updateProduct(id):
     try:
+        # this will update the product with _id = "id" by using the JSON parameter provided in the request by user
         dbResponse = collection.update_one(
-            {"_id": ObjectId(id)},
+            {"_id": ObjectId(id)}, # converting "id" from string to ObjectId type
             {"$set":
                 {
                     "name": request.json["name"],
@@ -139,6 +144,7 @@ def updateProduct(id):
                 }
             }
         )
+        # if successfully updated
         if (dbResponse.modified_count == 1):
             message = {
                 'status': 200,
@@ -149,6 +155,7 @@ def updateProduct(id):
             return resp
 
         else:
+            # if new data is same as present data then nothing is updated
             message = {
                 'status': 200,
                 'message': 'Nothing to update.'
@@ -156,7 +163,8 @@ def updateProduct(id):
             resp = jsonify(message)
             resp.status_code = 200
             return resp
-
+        
+    # if user provides invalid "_id" or any other exception occurs
     except Exception as ex:
         message = {
             'status': 404,
@@ -166,12 +174,14 @@ def updateProduct(id):
         resp.status_code = 404
         return resp
 
-
+# the delete endpoint will take one path parameter product "_id"
 @app.route('/delete/<id>', methods=['DELETE'])
 def deleteProduct(id):
     try:
+        # delete product with _id = "id" also convert "id" to ObjectId type
         dbResponse = collection.delete_one({'_id': ObjectId(id)})
-
+        
+        # if successfully deleted then
         if dbResponse.deleted_count == 1:
             message = {
                 'status': 200,
@@ -182,6 +192,7 @@ def deleteProduct(id):
             return resp
 
         else:
+            # if user provides invalid "id" then
             message = {
                 'status': 400,
                 'message': 'Invalid ID: ' + str(id) + '. Please make sure ID is correct.'
@@ -189,7 +200,8 @@ def deleteProduct(id):
             resp = jsonify(message)
             resp.status_code = 400
             return resp
-
+    
+    # if any other exception occurs
     except Exception as ex:
         message = {
             'status': 400,
@@ -201,5 +213,5 @@ def deleteProduct(id):
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
+    # start app at host="0.0.0.0" and listening on port=5000
     app.run(host="0.0.0.0", port=5000)
