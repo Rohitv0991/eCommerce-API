@@ -136,8 +136,8 @@ Kindly note that in place of ```<column> and <value>``` we have to write ```_id 
 As you can see this is the product which we first created and then updated.
     
 #### b. Search for Products ####
-User can also search in the database with other values as well, like if a user wants to see all products with ```classification_l2``` containing value as "women's knitwear".
-To do so we will write ```classification_l2``` and "women's knitwear" in place of ```<column> and <value>``` respectively.
+User can also search in the database with other values as well, like if a user wants to see all products with classification_l2 containing value as "women's knitwear".
+To do so we will write ```classification_l2 and "women's knitwear"``` in place of ```<column> and <value>``` respectively.
     
 ```python
 import requests
@@ -159,7 +159,7 @@ In the response we will receive a ```List``` of ```JSON``` objects which will lo
 ```
 
 #### c. View all Products ####
-If a user want to see all the products stored in the database, the user has to write "none" and "none" in place of ```<column> and <value>```. "none" tells the API that no filters should be applied and show all the data. Request should look like this:
+If a user want to see all the products stored in the database, the user has to write ```"none" and "none"``` in place of ```<column> and <value>```. "none" tells the API that no filters should be applied and show all the data. Request should look like this:
     
 ```python
 import requests
