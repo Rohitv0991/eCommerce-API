@@ -104,7 +104,7 @@ To read the objects we will be sending a **GET** request to the API. The URL for
 ```
 http://127.0.0.1:5000/read/<column>/<value>
 ```
-In this API there are a number of ways using ehich a user can read the objects in the database, we will be discussing all of them one by one.
+In this API there are a number of ways using which a user can read the objects in the database, we will be discussing all of them one by one.
 #### a. View a Specific Product ####
 To do this we have to search for the specific product using its ID.
 ```python
@@ -114,7 +114,7 @@ api_result = requests.get(url='http://127.0.0.1:5000/read/_id/5f87f0f754fb750b27
 api_response = api_result.json()
 print(api_response)
 ```
-Kindly note that in place of <column> and <value> we have to write ```_id``` and "5f87f0f754fb750b274d6214" respectively. Then API will search in database for product with given ID and will return a ```List``` of ```JSON``` objects but it will only contain a single object in this case as every ID is unique, response will look like this:
+Kindly note that in place of ```<column> and <value>``` we have to write ```_id and 5f87f0f754fb750b274d6214``` respectively. Then API will search in database for product with given ID and will return a ```List``` of ```JSON``` objects but it will only contain a single object in this case as every ID is unique, response will look like this:
     
 ```python
 [
